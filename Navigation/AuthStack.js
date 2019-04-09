@@ -1,10 +1,16 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import Login from "../Components/Login";
 import ProductsList from "../Components/ProductsList";
 import ProductDetail from "../Components/ProductDetail";
+
 const AuthStack = createStackNavigator(
-  { ProductsList: ProductsList, ProductDetail: ProductDetail },
   {
-    initialRouteName: "ProductsList",
+    Login: Login,
+    ProductsList: ProductsList,
+    ProductDetail: ProductDetail
+  },
+  {
+    initialRouteName: "Login",
     cardStyle: {
       backgroundColor: "rgb(20,90,100)"
     },

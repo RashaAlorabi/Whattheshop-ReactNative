@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Spinner } from "native-base";
-
+import { withNavigation } from "react-navigation";
 import { Provider } from "react-redux";
-
+import { connect } from "react-redux";
 // Store
 import store from "./store";
 import AppContainer from "./Navigation";

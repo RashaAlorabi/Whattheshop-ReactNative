@@ -1,9 +1,9 @@
-// export {
-//     login,
-//     signup,
-//     logout,
-//     checkForExpiredToken
-//   } from "./authenticationsAction";
+export {
+  checkForExpiredToken,
+  login,
+  signup,
+  logout
+} from "./authenticationsAction";
 
 export {
   fetchAllProducts,
