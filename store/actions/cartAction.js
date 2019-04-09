@@ -16,7 +16,6 @@ export const fetchCartList = () => {
         type: actionTypes.FITCH_CART_LIST,
         payload: CartList
       });
-      //   history.push("/private");
     } catch (err) {
       console.error("Error while fetching the cart items", err);
     }
@@ -37,7 +36,6 @@ export const addItemToCart = (orderID, productID, quantity) => {
         type: actionTypes.ADD_ITEM_CART,
         payload: newItem
       });
-      //   history.push("/private");
     } catch (err) {
       console.error("Error while adding the cart item", err);
     }

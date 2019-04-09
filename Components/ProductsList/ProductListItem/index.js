@@ -6,7 +6,7 @@ import { Image } from "react-native";
 import * as actionCreators from "../../../store/actions/index";
 
 import { withNavigation } from "react-navigation";
-
+import NumericInput from "react-native-numeric-input";
 import {
   Container,
   Header,
@@ -19,7 +19,9 @@ import {
   Icon,
   Left,
   Body,
-  Right
+  Right,
+  Spinner,
+  TextInput
 } from "native-base";
 
 class ProductListItem extends Component {
@@ -27,17 +29,17 @@ class ProductListItem extends Component {
     quantity: ""
   };
 
-  changeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  // changeHandler = e => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
   render() {
-    // let order;
-    // if (this.props.loading) {
-    //   order = <Text>loading</Text>;
-    // } else {
-    //   order = this.props.order;
-    // }
-    //console.log(order, "order_id");
+    let order;
+    if (this.props.loading) {
+      order = <Spinner />;
+    } else {
+      order = this.props.order;
+    }
+    console.log(order, "product list item printing order");
 
     const { product } = this.props;
     return (
@@ -51,9 +53,6 @@ class ProductListItem extends Component {
           }
         >
           <Image
-            onPress={() => {
-              console.log("[ProductListItem.js] card");
-            }}
             source={{ uri: product.images[0].image }}
             style={{ height: 200, width: 50, flex: 1 }}
           />
@@ -86,6 +85,10 @@ class ProductListItem extends Component {
               alignItems: "center"
             }}
           >
+            <NumericInput
+              value={this.state.quantity}
+              onChange={quantity => this.setState({ quantity })}
+            />
             <Button
               transparent
               button
@@ -118,9 +121,9 @@ const mapStateToProps = state => {
   return {
     // user: state.authReducer.user,
     //orders: state.ordersRoot.orders,
-    // orderID: state.cartReducer.orderID,
+
     // profile: state.profileRoot.profile,
-    //loading: state.profileRoot.loading,
+    loading: state.cartRoot.loading,
     order: state.cartRoot.order
   };
 };
@@ -135,7 +138,7 @@ const mapDispatchToProps = dispatch => {
 
 export default withNavigation(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(ProductListItem)
 );

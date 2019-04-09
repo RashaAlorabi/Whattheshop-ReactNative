@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions/index";
-
+import Carousel, { Pagination } from "react-native-snap-carousel";
+import NumericInput from "react-native-numeric-input";
 // NativeBase Components
 import {
   Thumbnail,
@@ -15,11 +16,13 @@ import {
   Picker,
   Content,
   Spinner,
-  Input
+  Input,
+  Image
 } from "native-base";
 
 //List
 import ProductsList from "../../Components/ProductsList/index";
+//import ImagesSlide from "../../Components/ProductDetail/ImagesSlide";
 
 class ProductDetail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -34,7 +37,33 @@ class ProductDetail extends Component {
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
+  // _renderItem({ item, index }) {
+  //   return <ImagesSlide data={item} />;
+  // }
+  // get pagination() {
+  //   const { entries, activeSlide } = this.state;
+  //   return (
+  //     <Pagination
+  //       dotsLength={entries.length}
+  //       activeDotIndex={activeSlide}
+  //       containerStyle={{ backgroundColor: "rgba(0, 0, 0, 0.75)" }}
+  //       dotStyle={{
+  //         width: 10,
+  //         height: 10,
+  //         borderRadius: 5,
+  //         marginHorizontal: 8,
+  //         backgroundColor: "rgba(255, 255, 255, 0.92)"
+  //       }}
+  //       inactiveDotStyle={
+  //         {
+  //           // Define styles for inactive dots here
+  //         }
+  //       }
+  //       inactiveDotOpacity={0.4}
+  //       inactiveDotScale={0.6}
+  //     />
+  //   );
+  // }
   render() {
     let order;
     // if (this.props.loading) {
@@ -48,27 +77,48 @@ class ProductDetail extends Component {
     return (
       <Content>
         <List>
+          {/* <View>
+          <Carousel
+            data={this.state.entries}
+            renderItem={this._renderItem}
+            onSnapToItem={index => this.setState({ activeSlide: index })}
+          />
+          {this.pagination}
+          </View> */}
+          {/* <ImagesSlide /> */}
           <ListItem>
             <Left>
-              <Text>
+              {/* <Image
+                source={{ uri: product.images[0].image }}
+                style={{ height: 200, width: 50, flex: 1 }}
+              /> */}
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: 19,
+                  fontWeight: "bold",
+                  padding: 10
+                }}
+              >
                 {product.name}
+              </Text>
+              <Text style={{ flex: 1 }}>Price</Text>
+              <Text
+                style={{
+                  fontSize: 19,
 
-                <Text note>{product.price}</Text>
+                  padding: 5
+                }}
+              >
+                {product.price}
               </Text>
             </Left>
             <Body />
-            <Right>
-              <Thumbnail bordered source={{}} />
-            </Right>
           </ListItem>
           <ListItem>
-            <Input
-              className="form-control col-5"
-              type="text"
-              placeholder="quantity"
-              name="quantity"
+            <NumericInput
               value={this.state.quantity}
-              onChange={this.changeHandler}
+              onChange={quantity => this.setState({ quantity })}
             />
           </ListItem>
           <Button
@@ -85,7 +135,24 @@ class ProductDetail extends Component {
           >
             <Text>Add to cart</Text>
           </Button>
-          <Text>{product.description}</Text>
+          <Text
+            style={{
+              fontSize: 19,
+              fontWeight: "bold",
+              padding: 5
+            }}
+          >
+            Description{" "}
+          </Text>
+          <Text
+            style={{
+              fontSize: 15,
+
+              padding: 5
+            }}
+          >
+            {product.description}
+          </Text>
         </List>
       </Content>
     );

@@ -14,6 +14,7 @@ class ProductsList extends Component {
   };
   componentDidMount = () => {
     this.props.onFetchAllProducts();
+    this.props.onfetchCartList();
   };
   render() {
     const { products, loading } = this.props.productsRoot;
@@ -36,7 +37,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchAllProducts: () => dispatch(actionCreators.fetchAllProducts())
+    onFetchAllProducts: () => dispatch(actionCreators.fetchAllProducts()),
+    onfetchCartList: () => dispatch(actionCreators.fetchCartList())
   };
 };
 export default connect(
