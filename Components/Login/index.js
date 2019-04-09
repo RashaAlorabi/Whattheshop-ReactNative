@@ -18,7 +18,7 @@ import {
 
 class Login extends Component {
   componentDidMount = () => {
-    this.props.checkForToken();
+    //this.props.checkForToken();
   };
 
   state = {
@@ -103,9 +103,7 @@ const mapDispatchToProps = dispatch => ({
   signup: (userData, navigation) =>
     dispatch(actionCreators.signup(userData, navigation)),
   checkForToken: navigation =>
-    dispatch(actionCreators.checkForExpiredToken(navigation)),
-  onFetchAllProducts: () => dispatch(actionCreators.fetchAllProducts()),
-  onfetchCartList: () => dispatch(actionCreators.fetchCartList())
+    dispatch(actionCreators.checkForExpiredToken(navigation))
 });
 
 export default connect(

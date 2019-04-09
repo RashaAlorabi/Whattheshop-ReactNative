@@ -72,6 +72,7 @@ export const signup = (userData, navigation) => {
       let decodedUser = jwt_decode(user.token);
       setAuthToken(user.token);
       dispatch(setCurrentUser(decodedUser));
+      navigation.replace("ProductsList");
     } catch (error) {
       console.error(error);
     }
