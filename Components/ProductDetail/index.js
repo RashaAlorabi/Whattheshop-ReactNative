@@ -22,7 +22,7 @@ import {
 
 //List
 import ProductsList from "../../Components/ProductsList/index";
-//import ImagesSlide from "../../Components/ProductDetail/ImagesSlide";
+import ImagesSlide from "../../Components/ProductDetail/ImagesSlide";
 
 class ProductDetail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -77,15 +77,7 @@ class ProductDetail extends Component {
     return (
       <Content>
         <List>
-          {/* <View>
-          <Carousel
-            data={this.state.entries}
-            renderItem={this._renderItem}
-            onSnapToItem={index => this.setState({ activeSlide: index })}
-          />
-          {this.pagination}
-          </View> */}
-          {/* <ImagesSlide /> */}
+          <ImagesSlide />
           <ListItem>
             <Left>
               {/* <Image

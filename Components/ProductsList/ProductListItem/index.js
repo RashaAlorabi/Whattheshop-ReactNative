@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { Image } from "react-native";
-
+import { Col, Row, Grid } from "react-native-easy-grid";
 import * as actionCreators from "../../../store/actions/index";
 
 import { withNavigation } from "react-navigation";
@@ -26,7 +26,7 @@ import {
 
 class ProductListItem extends Component {
   state = {
-    quantity: ""
+    quantity: 0
   };
 
   // changeHandler = e => {
@@ -43,77 +43,94 @@ class ProductListItem extends Component {
 
     const { product } = this.props;
     return (
-      <Card>
-        <CardItem
-          button
-          onPress={() =>
-            this.props.navigation.navigate("ProductDetail", {
-              product: product
-            })
-          }
-        >
-          <Image
-            source={{ uri: product.images[0].image }}
-            style={{ height: 200, width: 50, flex: 1 }}
-          />
-          <Body style={{ padding: 10 }}>
-            <Text
-              style={{
-                textAlign: "center",
-                fontSize: 19,
-                fontWeight: "bold",
-                padding: 10
-              }}
-            >
-              {product.name}
-            </Text>
-            <Text style={{ flex: 0.25, flexDirection: "row" }} note>
-              Added By {product.added_by}
-            </Text>
-            <Text style={{ flex: 0.25, flexDirection: "row" }}>
-              Stock {product.stock}
-            </Text>
-            <Text>Price {product.price}</Text>
-          </Body>
-        </CardItem>
-
-        <CardItem>
-          <Body
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center"
-            }}
+      <Grid>
+        <Col>
+          <CardItem
+            button
+            onPress={() =>
+              this.props.navigation.navigate("ProductDetail", {
+                product: product
+              })
+            }
           >
-            <NumericInput
-              value={this.state.quantity}
-              onChange={quantity => this.setState({ quantity })}
+            <Image
+              source={{ uri: product.images[0].image }}
+              style={{ height: 200, width: 50, flex: 1 }}
             />
-            <Button
-              transparent
-              button
-              onPress={() =>
-                this.props.addItemToCart(
-                  order.id,
-                  product.id,
-                  this.state.quantity
-                )
-              }
-            >
-              <Icon type="AntDesign" name="shoppingcart" />
+            <Body style={{ padding: 10 }}>
               <Text
                 style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center"
+                  textAlign: "center",
+                  fontSize: 19,
+                  fontWeight: "bold",
+                  padding: 10
                 }}
               >
-                Add to cart
+                {product.name}
               </Text>
-            </Button>
-          </Body>
-        </CardItem>
-      </Card>
+              <Text style={{ flex: 0.25, flexDirection: "row" }} note>
+                Added By {product.added_by}
+              </Text>
+              <Text style={{ flex: 0.25, flexDirection: "row" }}>
+                Stock {product.stock}
+              </Text>
+              <Text>Price {product.price}</Text>
+            </Body>
+          </CardItem>
+          <CardItem>
+            <Body
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <NumericInput
+                initValue={this.state.quantity}
+                value={this.state.quantity}
+                onChange={value => this.setState({ quantity: value })}
+                totalWidth={240}
+                totalHeight={50}
+                iconSize={25}
+                minValue={0}
+                maxValue={150}
+                step={1}
+                rounded
+                textColor="#B0228C"
+                iconStyle={{ color: "white" }}
+                rightButtonBackgroundColor="#EA3788"
+                leftButtonBackgroundColor="#E56B70"
+              />
+              {this.state.quantity <= product.stock ? (
+                <Button
+                  transparent
+                  button
+                  onPress={() =>
+                    this.props.addItemToCart(
+                      order.id,
+                      product.id,
+                      this.state.quantity
+                    )
+                  }
+                >
+                  <Icon type="AntDesign" name="shoppingcart" />
+                  <Text
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
+                    Add to cart
+                  </Text>
+                </Button>
+              ) : (
+                <Text>out of stock</Text>
+              )}
+            </Body>
+          </CardItem>
+        </Col>
+      </Grid>
     );
   }
 }
