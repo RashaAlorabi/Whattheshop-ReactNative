@@ -2,7 +2,7 @@ import axios from "axios";
 import * as actionTypes from "./actionTypes";
 import { resetErrors } from "./errors";
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/"
+  baseURL: "http://172.20.3.126:80/api/"
 });
 export const checkout = orderID => {
   return async dispatch => {
