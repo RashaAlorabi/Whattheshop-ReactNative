@@ -43,82 +43,77 @@ class ProductListItem extends Component {
 
     const { product } = this.props;
     return (
-      <Container>
-        <Header />
-        <Content>
-          <Card>
-            <CardItem
+      <Card>
+        <CardItem
+          button
+          onPress={() =>
+            this.props.navigation.navigate("ProductDetail", {
+              product: product
+            })
+          }
+        >
+          <Image
+            source={{ uri: product.images[0].image }}
+            style={{ height: 200, width: 50, flex: 1 }}
+          />
+          <Body style={{ padding: 10 }}>
+            <Text
+              style={{
+                textAlign: "center",
+                fontSize: 19,
+                fontWeight: "bold",
+                padding: 10
+              }}
+            >
+              {product.name}
+            </Text>
+            <Text style={{ flex: 0.25, flexDirection: "row" }} note>
+              Added By {product.added_by}
+            </Text>
+            <Text style={{ flex: 0.25, flexDirection: "row" }}>
+              Stock {product.stock}
+            </Text>
+            <Text>Price {product.price}</Text>
+          </Body>
+        </CardItem>
+
+        <CardItem>
+          <Body
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <NumericInput
+              value={this.state.quantity}
+              onChange={quantity => this.setState({ quantity })}
+            />
+            <Button
+              transparent
               button
               onPress={() =>
-                this.props.navigation.navigate("ProductDetail", {
-                  product: product
-                })
+                this.props.addItemToCart(
+                  order.id,
+                  product.id,
+                  this.state.quantity
+                )
               }
             >
-              <Image
-                source={{ uri: product.images[0].image }}
-                style={{ height: 200, width: 50, flex: 1 }}
-              />
-              <Body style={{ padding: 10 }}>
-                <Text
-                  style={{
-                    textAlign: "center",
-                    fontSize: 19,
-                    fontWeight: "bold",
-                    padding: 10
-                  }}
-                >
-                  {product.name}
-                </Text>
-                <Text style={{ flex: 0.25, flexDirection: "row" }} note>
-                  Added By {product.added_by}
-                </Text>
-                <Text style={{ flex: 0.25, flexDirection: "row" }}>
-                  Stock {product.stock}
-                </Text>
-                <Text>Price {product.price}</Text>
-              </Body>
-            </CardItem>
-
-            <CardItem>
-              <Body
+              <Icon type="AntDesign" name="shoppingcart" />
+              <Text
                 style={{
                   flex: 1,
                   justifyContent: "center",
                   alignItems: "center"
                 }}
               >
-                <NumericInput
-                  value={this.state.quantity}
-                  onChange={quantity => this.setState({ quantity })}
-                />
-                <Button
-                  transparent
-                  button
-                  onPress={() =>
-                    this.props.addItemToCart(
-                      order.id,
-                      product.id,
-                      this.state.quantity
-                    )
-                  }
-                >
-                  <Icon type="AntDesign" name="shoppingcart" />
-                  <Text
-                    style={{
-                      flex: 1,
-                      justifyContent: "center",
-                      alignItems: "center"
-                    }}
-                  >
-                    Add to cart
-                  </Text>
-                </Button>
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
+                Add to cart
+              </Text>
+            </Button>
+          </Body>
+        </CardItem>
+      </Card>
     );
   }
 }

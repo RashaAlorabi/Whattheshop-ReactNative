@@ -26,11 +26,7 @@ class ProductsList extends Component {
       <ProductListItem key={product.id} product={product} />
     ));
 
-    return (
-      <Content>
-        <List>{productsList}</List>
-      </Content>
-    );
+    return <Content>{productsList}</Content>;
   }
 }
 const mapStateToProps = state => {
