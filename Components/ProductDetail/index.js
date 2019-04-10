@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions/index";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import NumericInput from "react-native-numeric-input";
+import { withNavigation } from "react-navigation";
 // NativeBase Components
 import {
   Thumbnail,
@@ -64,13 +65,10 @@ class ProductDetail extends Component {
         <View style={{ paddingLeft: 10, paddingTop: 5 }}>
           <Text>Price : {product.price}</Text>
         </View>
-        {/* <ListItem>
-          <NumericInput
-            value={this.state.quantity}
-            onChange={quantity => this.setState({ quantity })}
-          />
-        </ListItem> */}
-        <View style={{ paddingLeft: 10 }}>
+        <View style={{ paddingLeft: 10, paddingTop: 5 }}>
+          <Text>Stock : {product.stock}</Text>
+        </View>
+        <View style={{ paddingLeft: 150 }}>
           <NumericInput
             initValue={this.state.quantity}
             value={this.state.quantity}
@@ -87,7 +85,9 @@ class ProductDetail extends Component {
             rightButtonBackgroundColor="white"
             leftButtonBackgroundColor="white"
           />
-          {this.state.quantity <= product.stock ? (
+        </View>
+        {this.state.quantity <= product.stock ? (
+          <View style={{ paddingTop: 5, paddingBottom: 5 }}>
             <Button
               full
               danger
@@ -100,21 +100,30 @@ class ProductDetail extends Component {
                 )
               }
             >
-              <View>
-                <Text>Add to cart</Text>
-              </View>
+              <Text>Add to cart</Text>
             </Button>
-          ) : (
-            <Text>out of stock</Text>
-          )}
-        </View>
+          </View>
+        ) : (
+          <Text>out of stock</Text>
+        )}
+
         <View
           style={{
             borderBottomColor: "black",
             borderBottomWidth: 1
           }}
         />
-        <Text>{product.description}</Text>
+        <View style={{ paddingLeft: 10, paddingTop: 5, paddingBottom: 5 }}>
+          <Text
+            style={{
+              fontSize: 19,
+              fontWeight: "bold"
+            }}
+          >
+            Description:
+            <Text>{product.description}</Text>
+          </Text>
+        </View>
       </View>
     );
   }
@@ -132,7 +141,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actionCreators.addItemToCart(orderID, productID, quantity))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProductDetail);
+export default withNavigation(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ProductDetail)
+);
