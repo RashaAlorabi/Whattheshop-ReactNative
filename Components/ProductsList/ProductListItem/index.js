@@ -56,10 +56,14 @@ class ProductListItem extends Component {
                   })
                 }
               >
-                <Image
-                  source={{ uri: product.images[0].image }}
-                  style={{ height: 200, width: 50, flex: 1 }}
-                />
+                {product.images.length ? (
+                  <Image
+                    source={{ uri: product.images[0].image }}
+                    style={{ height: 200, width: 50, flex: 1 }}
+                  />
+                ) : (
+                  <Text />
+                )}
               </CardItem>
               <Body>
                 <Text
