@@ -5,12 +5,15 @@ import { connect } from "react-redux";
 import ProductListItem from "./ProductListItem";
 import * as actionCreators from "../../store/actions/index";
 
+
+import CartButton from "../CartButton";
 import { List, Content, Spinner, View } from "native-base";
 import { SearchBar } from "react-native-elements";
+
 class ProductsList extends Component {
   static navigationOptions = {
-    title: "Products List"
-    // headerRight: <CartButton />
+    title: "Products List",
+    headerRight: <CartButton />
   };
   componentDidMount = () => {
     this.props.onFetchAllProducts();

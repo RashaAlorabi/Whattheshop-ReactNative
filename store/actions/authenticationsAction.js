@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { AsyncStorage } from "react-native";
 
 const instance = axios.create({
-  baseURL: "http://172.20.1.103:80/api/"
+  baseURL: "http://172.20.3.126:80/api/"
 });
 
 export const checkForExpiredToken = navigation => {
