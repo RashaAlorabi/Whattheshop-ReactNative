@@ -89,7 +89,9 @@ class CartListItem extends Component {
               }
             />
           ) : (
-            <Text>out of stock</Text>
+            <View>
+              <Text>out of stock</Text>
+            </View>
           )}
           <Icon
             name="trash"

@@ -41,7 +41,7 @@ const BottomNav = createBottomTabNavigator(
             iconType = "MaterialCommunityIcons";
         }
         return (
-          <Icon name={iconName} type={iconType} style={{ color: "purple" }} />
+          <Icon name={iconName} type={iconType} style={{ color: "#009973" }} />
         );
       }
     }),

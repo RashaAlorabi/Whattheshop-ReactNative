@@ -5006,6 +5006,14 @@ react-native-pixel-perfect@^1.0.1:
   resolved "https://registry.yarnpkg.com/react-native-pixel-perfect/-/react-native-pixel-perfect-1.0.2.tgz#8e6dc97e377caa4bd07f9e584ba438d53c0e25e8"
   integrity sha512-0IvYCNkxuQbQC9q4tI+C3i6o38nbx916p7gBRBWuPxDhKBCuTkVV3VukcfW6vtjRlwQm6kwQcF9OtI+yUBt+YA==
 
+react-native-progress-steps@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/react-native-progress-steps/-/react-native-progress-steps-1.2.6.tgz#da4b12bda8f2f24860cfbd1a2a8881952eb620b7"
+  integrity sha512-HGGZ4ae0ekWXKgDf84hxmIkshimLg1wNeJ3TWISDWSA1nyrFG+LeJ51JxIvygipOui0WtdAHTbjGY1GpK9TL2g==
+  dependencies:
+    lodash "^4.17.11"
+    prop-types "^15.6.2"
+
 react-native-ratings@^6.3.0:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-6.3.1.tgz#4e4bd87f376423dc62c933f570fc1932c78adaa4"
