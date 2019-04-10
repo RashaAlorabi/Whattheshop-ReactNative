@@ -22,6 +22,7 @@ const AuthStack = createStackNavigator(
     CartList: CartList,
     Checkout: Checkout,
     Thanks: Thanks,
+
   },
   {
     initialRouteName: "Auth",
