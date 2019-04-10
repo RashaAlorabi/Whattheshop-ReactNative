@@ -10,7 +10,7 @@
     "icon": "./assets/cube.gif",
     "splash": {
       "image": "./assets/cube.gif",
-      "resizeMode": "cover",
+      "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {

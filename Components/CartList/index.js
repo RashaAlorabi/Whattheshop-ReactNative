@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 // Components
 
 import * as actionCreators from "../../store/actions/index";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import {
   H3,
   Container,
@@ -13,14 +13,16 @@ import {
   Spinner,
   Button,
   Body,
+  Icon,
   Footer,
   FooterTab
 } from "native-base";
 import CartListItem from "../CartList/CartListItem";
-
+import Logo from "../logo";
 class CartList extends Component {
   static navigationOptions = {
-    title: "Cart List"
+    // title: "Cart List",
+    headerTitle: <Logo />
   };
   componentDidMount = () => {
     this.props.onfetchCartList();
@@ -43,15 +45,19 @@ class CartList extends Component {
         <Footer>
           <FooterTab>
             <Body>
-              <H3>Total: {order.total}</H3>
+              <H3 style={{ fontFamily: "Thonburi" }}>
+                Total: {order.total} SR
+              </H3>
             </Body>
 
             <Button
               full
-              success
+              style={{ backgroundColor: "#009973", fontFamily: "Thonburi" }}
               onPress={() => this.props.navigation.navigate("Checkout")}
             >
-              <Text style={{ color: "white" }}>Checkout</Text>
+              <Text style={{ color: "white", fontFamily: "Thonburi" }}>
+                Checkout
+              </Text>
             </Button>
           </FooterTab>
         </Footer>

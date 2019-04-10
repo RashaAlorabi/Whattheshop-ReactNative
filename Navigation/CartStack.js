@@ -1,24 +1,23 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import Login from "../Components/Login";
-import ProductsList from "../Components/ProductsList";
-import ProductDetail from "../Components/ProductDetail";
-//import HomePage from "../Components/HomePage";
+
 import CartList from "../Components/CartList";
 import Checkout from "../Components/Checkout";
 import Thanks from "../Components/ThanksMessage";
-const AuthStack = createStackNavigator(
+const CartStack = createStackNavigator(
   {
-    Login: Login,
-    ProductsList: ProductsList
+    CartList: CartList,
+    Checkout: Checkout,
+    Thanks: Thanks
   },
   {
-    initialRouteName: "Login",
+    initialRouteName: "CartList",
     cardStyle: {
       backgroundColor: "white"
     },
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "white"
+        backgroundColor: "white",
+        height: 75
       },
       headerTitleStyle: {
         fontWeight: "bold"
@@ -28,4 +27,4 @@ const AuthStack = createStackNavigator(
   }
 );
 
-export default AuthStack;
+export default CartStack;
