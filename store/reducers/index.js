@@ -7,11 +7,13 @@ import profileReducer from "./profileReducer";
 import ordersReducer from "./ordersReducer";
 
 import cartReducer from "./cartReducer";
+import errorsReducer from "./errorsReducer";
 
 export default combineReducers({
   productsRoot: productsReducer,
   authRoot: authenticationsReducer,
   profileRoot: profileReducer,
   ordersRoot: ordersReducer,
-  cartRoot: cartReducer
+  cartRoot: cartReducer,
+  errorRoot: errorsReducer,
 });

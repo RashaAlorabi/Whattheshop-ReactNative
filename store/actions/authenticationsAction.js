@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { AsyncStorage } from "react-native";
-import { profile } from "./profileAction";
+import { setErrors } from "./errors";
 
 const instance = axios.create({
   baseURL: "http://172.20.10.3:80/api/"
@@ -58,7 +58,8 @@ export const login = (userData, navigation) => {
       dispatch(setCurrentUser(decodedUser));
       navigation.replace("Auth");
     } catch (error) {
-      console.error("login error ", error);
+      dispatch(setErrors(error.response.data));
+
     }
   };
 };
@@ -73,7 +74,7 @@ export const signup = (userData, navigation) => {
       dispatch(setCurrentUser(decodedUser));
       navigation.replace("Auth");
     } catch (error) {
-      console.error(error);
+      dispatch(setErrors(error.response.data));
     }
   };
 };
