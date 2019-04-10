@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Image } from "react-native";
+import { withNavigation } from "react-navigation";
+import { connect } from "react-redux";
 import {
   Container,
   Header,
@@ -13,59 +15,49 @@ import {
   Body,
   Icon
 } from "native-base";
-const cards = [
-  {
-    text: "Card One",
-    name: "One",
-    image: require("../Images/java.jpeg")
-  },
-  {
-    text: "Card One",
-    name: "One",
-    image: require("../Images/java.jpeg")
-  },
-  {
-    text: "Card One",
-    name: "One",
-    image: require("../Images/mac.jpeg")
-  }
-];
-// const product = this.props.product;
-// const images = product.images.map(image => ({
-//   uri: image.image
-// }));
+
 class ImagesSlide extends Component {
   render() {
+    const product = this.props.product;
+
     return (
-      <Container>
-        <Header />
-        <View>
-          <DeckSwiper
-            dataSource={cards}
-            renderItem={item => (
-              <Card style={{ elevation: 3 }}>
-                <CardItem>
-                  <Left>
-                    <Thumbnail source={item.image} />
-                    <Body>
-                      <Text>{item.text}</Text>
-                      <Text note>NativeBase</Text>
-                    </Body>
-                  </Left>
-                </CardItem>
-                <CardItem cardBody>
-                  <Image style={{ height: 300, flex: 1 }} source={item.image} />
-                </CardItem>
-                <CardItem>
-                  <Icon name="heart" style={{ color: "#ED4A6A" }} />
-                  <Text>{item.name}</Text>
-                </CardItem>
-              </Card>
-            )}
-          />
-        </View>
-      </Container>
+      <View style={{ marginBottom: 360, marginTop: 20 }}>
+        <DeckSwiper
+          dataSource={product.images}
+          renderItem={item => (
+            <Card style={{ elevation: 3 }}>
+              <CardItem />
+              <CardItem cardBody>
+                <Image
+                  style={{ height: 300, flex: 1 }}
+                  source={{ uri: item.image }}
+                />
+              </CardItem>
+              <CardItem />
+            </Card>
+          )}
+        />
+      </View>
     );
   }
 }
-export default ImagesSlide;
+
+const mapStateToProps = state => {
+  return {
+    loading: state.productsRoot.loading
+  };
+};
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     // onFetchAllProducts: () => dispatch(actionCreators.fetchAllProducts()),
+//     addItemToCart: (orderID, productID, quantity) =>
+//       dispatch(actionCreators.addItemToCart(orderID, productID, quantity))
+//   };
+// };
+export default withNavigation(
+  connect(
+    mapStateToProps,
+    null
+  )(ImagesSlide)
+);
