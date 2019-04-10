@@ -12,11 +12,13 @@ function mapDispatchToProps(dispatch) {
 
 class index extends Component {
   render() {
-    console.log("=====================wtf======");
     const { order } = this.props;
     return (
       <ListItem style={{ overflow: "scroll" }}>
         <Card>
+          <CardItem header bordered>
+            <Text>Order ID: {order.id}</Text>
+          </CardItem>
           <CardItem>
             <Text>Products: {order.cart_items.length}</Text>
           </CardItem>

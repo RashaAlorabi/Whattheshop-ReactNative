@@ -4,12 +4,14 @@ import ProductsList from "../Components/ProductsList";
 import ProductDetail from "../Components/ProductDetail";
 import Profile from "../Components/ProfilePage";
 import Auth from "../Components/Auth";
+import UpdateProfile from "../Components/ProfilePage/UpdateProfile";
 //import HomePage from "../Components/HomePage";
 const AuthStack = createStackNavigator(
   {
     Auth: Auth,
     Login: Login,
     ProductsList: ProductsList,
+    UpdateProfile: UpdateProfile,
     Profile: Profile
   },
   {

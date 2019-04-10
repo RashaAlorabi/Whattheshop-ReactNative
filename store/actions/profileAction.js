@@ -29,7 +29,7 @@ export const profile = () => {
   };
 };
 
-export const profileUpdate = (userData, profileData) => {
+export const profileUpdate = (userData, profileData, navigation) => {
   return async dispatch => {
     try {
       const res = await instance.put("profile/update/", {
@@ -38,6 +38,7 @@ export const profileUpdate = (userData, profileData) => {
       });
       const UpdatedProfile = res.data;
       //   console.log(UpdatedProfile, "here is the profile update action");
+      navigation.navigate("Profile");
       dispatch({
         type: actionTypes.PROFILE_UPDATE,
         payload: UpdatedProfile
