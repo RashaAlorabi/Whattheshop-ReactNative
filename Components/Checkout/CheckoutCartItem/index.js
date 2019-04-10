@@ -13,7 +13,10 @@ class CheckoutCartItem extends Component {
     return (
       <ListItem thumbnail>
         <Left>
-          <Thumbnail square source={{ uri: item.product.images[0].image }} />
+          <Thumbnail
+            square
+            source={{ uri: "http://0.0.0.0:80" + item.product.images[0].image }}
+          />
         </Left>
         <Body>
           <Text>{item.product.name}</Text>

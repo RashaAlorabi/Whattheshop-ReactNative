@@ -24,6 +24,7 @@
     "react-native-elements": "^1.1.0",
     "react-native-material-cards": "^1.0.9",
     "react-native-numeric-input": "^1.6.5",
+    "react-native-progress-steps": "^1.2.6",
     "react-native-snap-carousel": "^3.7.5",
     "react-native-swiper": "^1.5.14",
     "react-navigation": "^3.3.2",
