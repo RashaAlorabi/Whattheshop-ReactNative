@@ -18,7 +18,7 @@ import {
 
 class Login extends Component {
   componentDidMount = () => {
-    //this.props.checkForToken();
+    this.props.checkForToken();
   };
 
   state = {
@@ -30,6 +30,7 @@ class Login extends Component {
     if (this.props.user) {
       this.props.navigation.navigate("ProductsList");
     }
+    const { errors } = this.props;
     return (
       <Content>
         <Header transparent />
@@ -37,6 +38,15 @@ class Login extends Component {
           <ListItem style={{ borderBottomWidth: 0 }}>
             <Body>
               <Form>
+                {!!errors.length ? (
+                  <Text className="alert alert-danger" role="alert">
+                    {errors.map(error => (
+                      <Text key={error}>{error}</Text>
+                    ))}
+                  </Text>
+                ) : (
+                  <Text />
+                )}
                 <Body>
                   <Label style={{ color: "white" }}>Username</Label>
                 </Body>
@@ -95,7 +105,8 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => ({
-  user: state.authRoot.user
+  user: state.authRoot.user,
+  errors: state.errorRoot.errors
 });
 const mapDispatchToProps = dispatch => ({
   login: (userData, navigation) =>
