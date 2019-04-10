@@ -5,12 +5,21 @@ import ProductDetail from "../Components/ProductDetail";
 import Profile from "../Components/ProfilePage";
 import Auth from "../Components/Auth";
 //import HomePage from "../Components/HomePage";
+import CartList from "../Components/CartList";
+import Checkout from "../Components/Checkout";
+import Thanks from "../Components/ThanksMessage";
 const AuthStack = createStackNavigator(
   {
     Auth: Auth,
     Login: Login,
+    Profile: Profile,
+    // HomePage: HomePage,
     ProductsList: ProductsList,
-    Profile: Profile
+    ProductDetail: ProductDetail,
+    CartList: CartList,
+    Checkout: Checkout,
+    Thanks: Thanks,
+
   },
   {
     initialRouteName: "Auth",

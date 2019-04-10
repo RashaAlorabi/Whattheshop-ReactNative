@@ -5,7 +5,7 @@ import { AsyncStorage } from "react-native";
 import { profile } from "./profileAction";
 
 const instance = axios.create({
-  baseURL: "http://172.20.10.3:80/api/"
+  baseURL: "http://172.20.3.126:80/api/"
 });
 
 export const checkForExpiredToken = navigation => {
