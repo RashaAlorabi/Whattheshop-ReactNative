@@ -5,16 +5,17 @@ import ProductDetail from "../Components/ProductDetail";
 //import HomePage from "../Components/HomePage";
 const AuthStack = createStackNavigator(
   {
-    Login: Login
+    Login: Login,
+    ProductsList: ProductsList
   },
   {
     initialRouteName: "Login",
     cardStyle: {
-      backgroundColor: "rgb(20,90,100)"
+      backgroundColor: "white"
     },
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "rgb(20,90,100)"
+        backgroundColor: "white"
       },
       headerTitleStyle: {
         fontWeight: "bold"
