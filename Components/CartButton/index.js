@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Icon } from "native-base";
+import { Icon, Left, Right, H3, Button, Badge } from "native-base";
 import { withNavigation } from "react-navigation";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { connect } from "react-redux";
 class CartButton extends Component {
   render() {
@@ -12,12 +12,21 @@ class CartButton extends Component {
 
     return (
       <View>
-        <Text>{itemQuantity}</Text>
-        <Icon
+        <Button
+          iconRight
+          transparent
           onPress={() => this.props.navigation.navigate("CartList")}
-          name="shoppingcart"
-          type="AntDesign"
-        />
+        >
+          <Text style={{ color: "#009973" }} white>
+            {itemQuantity}
+          </Text>
+
+          <Icon
+            name="cart"
+            style={{ color: "purple", fontSize: 25 }}
+            type="MaterialCommunityIcons"
+          />
+        </Button>
       </View>
     );
   }

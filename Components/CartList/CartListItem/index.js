@@ -1,17 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { Image } from "react-native";
+import { Image, View } from "react-native";
 
 import * as actionCreators from "../../../store/actions/index";
 
 import { withNavigation } from "react-navigation";
+import {
+  Card,
+  CardTitle,
+  CardContent,
+  CardAction,
+  CardButton,
+  CardImage
+} from "react-native-material-cards";
 import NumericInput from "react-native-numeric-input";
 import {
   Container,
   Header,
   Content,
-  Card,
+  // Card,
   CardItem,
   Thumbnail,
   Text,
@@ -41,13 +49,59 @@ class CartListItem extends Component {
     }
 
     const { item } = this.props;
+    console.log("item image url : ", item.product.images[0].image);
     return (
       <Card>
-        <CardItem button>
+        <CardItem>
           <Image
-            source={{ uri: item.product.images[0].image }}
-            style={{ height: 200, width: 50, flex: 1 }}
+            source={{ uri: "http://0.0.0.0:80" + item.product.images[0].image }}
+            style={{ width: 80, height: 160 }}
           />
+          <Body style={{ marginLeft: 10 }}>
+            <CardItem>
+              <Text>{item.product.name}</Text>
+            </CardItem>
+            <CardItem>
+              <Text>Price: {item.product.stock}</Text>
+            </CardItem>
+
+            <CardItem>
+              <Text style={{ marginRight: 5 }}>Quantity: {item.quantity}</Text>
+
+              <NumericInput
+                initValue={item.quantity}
+                onChange={quantity => this.setState({ quantity })}
+                totalWidth={90}
+                totalHieght={40}
+              />
+            </CardItem>
+            <CardItem>
+              <Text strong>Subtotal: {item.subtotal} SR</Text>
+            </CardItem>
+          </Body>
+          {this.state.quantity <= item.product.stock ? (
+            <Icon
+              name="edit"
+              type="AntDesign"
+              style={{ color: "gray", fontSize: 21, marginTop: 130 }}
+              onPress={() =>
+                this.props.updateItemCart(item.id, this.state.quantity)
+              }
+            />
+          ) : (
+            <Text>out of stock</Text>
+          )}
+          <Icon
+            name="trash"
+            style={{ color: "red", fontSize: 21, marginTop: 130 }}
+            onPress={() => this.props.deleteItemCart(item.id)}
+          />
+        </CardItem>
+      </Card>
+
+      /* <Card>
+        <CardItem button>
+         
           <Body style={{ padding: 10 }}>
             <Text
               style={{
@@ -78,10 +132,7 @@ class CartListItem extends Component {
               alignItems: "center"
             }}
           >
-            <NumericInput
-              value={item.quantity}
-              onChangeText={quantity => this.setState({ quantity })}
-            />
+            
             {/* <Button
               transparent
               button
@@ -103,29 +154,29 @@ class CartListItem extends Component {
               >
                 Add to cart
               </Text>
-            </Button> */}
-          </Body>
-          <Button transparent>
-            <Icon
-              iconLeft
-              name="trash"
-              style={{ color: "red", fontSize: 21 }}
-              onPress={() => this.props.deleteItemCart(item.id)}
-            />
-          </Button>
-          <Button transparent>
-            <Icon
-              iconLeft
-              name="edit"
-              type="AntDesign"
-              style={{ color: "gray", fontSize: 21 }}
-              onPress={() =>
-                this.props.updateItemCart(item.id, this.state.quantity)
-              }
-            />
-          </Button>
-        </CardItem>
-      </Card>
+            </Button> */
+      // </Body>
+      // <Button transparent>
+      //   <Icon
+      //     iconLeft
+      //     name="trash"
+      //     style={{ color: "red", fontSize: 21 }}
+      //     onPress={() => this.props.deleteItemCart(item.id)}
+      //   />
+      // </Button>
+      //     <Button transparent>
+      //       <Icon
+      //         iconLeft
+      //         name="edit"
+      //         type="AntDesign"
+      //         style={{ color: "gray", fontSize: 21 }}
+      //         onPress={() =>
+      //           this.props.updateItemCart(item.id, this.state.quantity)
+      //         }
+      //       />
+      //     </Button>
+      //   </CardItem>
+      // </Card> */}
     );
   }
 }

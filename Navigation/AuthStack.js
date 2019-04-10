@@ -13,6 +13,7 @@ const AuthStack = createStackNavigator(
   {
     Auth: Auth,
     Login: Login,
+
     Profile: Profile,
     // HomePage: HomePage,
     ProductsList: ProductsList,

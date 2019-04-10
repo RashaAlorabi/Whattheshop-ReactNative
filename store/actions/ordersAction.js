@@ -3,6 +3,7 @@ import * as actionTypes from "./actionTypes";
 import * as actionCreatores from "./index";
 // import { resetErrors } from "./";
 const instance = axios.create({
+
   baseURL: "http://172.20.10.3:80/api/"
 });
 export const checkout = (orderID, navigation) => {

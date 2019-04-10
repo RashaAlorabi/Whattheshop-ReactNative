@@ -4,12 +4,14 @@ import { Icon } from "native-base";
 import AuthStack from "./AuthStack";
 //import OrderStack from "./OrderStack";
 import ProductStack from "./ProductStack";
-
+import CartStack from "./CartStack";
+import SearchStack from "./SearchStack";
 const BottomNav = createBottomTabNavigator(
   {
-    Auth: AuthStack,
-    ProductStack: ProductStack
-    // CartStack: CartStack
+    ProductStack: ProductStack,
+    CartStack: CartStack,
+    SearchStack: SearchStack,
+    Auth: AuthStack
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -30,12 +32,16 @@ const BottomNav = createBottomTabNavigator(
             iconName = "home";
             iconType = "MaterialCommunityIcons";
             break;
+          case "SearchStack":
+            iconName = "search";
+            iconType = "FontAwesome";
+            break;
           default:
             iconName = "account";
             iconType = "MaterialCommunityIcons";
         }
         return (
-          <Icon name={iconName} type={iconType} style={{ color: tintColor }} />
+          <Icon name={iconName} type={iconType} style={{ color: "purple" }} />
         );
       }
     }),
@@ -44,7 +50,7 @@ const BottomNav = createBottomTabNavigator(
       activeTintColor: "white",
       inactiveTintColor: "black",
       style: {
-        backgroundColor: "rgb(20,90,100)"
+        backgroundColor: "white"
       }
     }
   }

@@ -3,7 +3,7 @@ import { createStackNavigator } from "react-navigation";
 import ProductsList from "../Components/ProductsList";
 import ProductDetail from "../Components/ProductDetail";
 
-const ProductStack = createStackNavigator(
+const SearchStack = createStackNavigator(
   {
     ProductsList: ProductsList,
     ProductDetail: ProductDetail
@@ -15,8 +15,7 @@ const ProductStack = createStackNavigator(
     },
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "white",
-        height: 75
+        backgroundColor: "#009973"
       },
       headerTitleStyle: {
         fontWeight: "bold"
@@ -26,4 +25,4 @@ const ProductStack = createStackNavigator(
   }
 );
 
-export default ProductStack;
+export default SearchStack;

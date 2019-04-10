@@ -5,14 +5,14 @@ import { connect } from "react-redux";
 import ProductListItem from "./ProductListItem";
 import * as actionCreators from "../../store/actions/index";
 
-
 import CartButton from "../CartButton";
 import { List, Content, Spinner, View } from "native-base";
 import { SearchBar } from "react-native-elements";
-
+import Logo from "../logo";
 class ProductsList extends Component {
   static navigationOptions = {
-    title: "Products List",
+    // title: "Products List",
+    headerTitle: <Logo />,
     headerRight: <CartButton />
   };
   componentDidMount = () => {
@@ -33,6 +33,7 @@ class ProductsList extends Component {
       <Content>
         <View>
           <SearchBar
+            styel={{ color: "white" }}
             placeholder="Type Here..."
             // onChangeText={this.updateSearch}
           />
