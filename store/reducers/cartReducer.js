@@ -8,7 +8,6 @@ const initialState = {
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FITCH_CART_LIST:
-      console.log(action.payload);
       return {
         ...state,
         order: action.payload,
@@ -16,17 +15,14 @@ const cartReducer = (state = initialState, action) => {
       };
 
     case actionTypes.ADD_ITEM_CART:
-      console.log(action.payload);
-
       let item = action.payload;
       let foundItem = state.order.cart_items.find(
         theItem =>
           theItem.orderID === item.orderID &&
           theItem.productID === item.productID
       );
-      console.log("[cartReducer.js] foundItem: ", foundItem);
+
       if (foundItem) {
-        console.log("[cartReducer.js] ITEM FOUND! ");
         foundItem.quantity = item.quantity;
         foundItem.subtotal = item.subtotal;
         return {
@@ -34,7 +30,6 @@ const cartReducer = (state = initialState, action) => {
           order: { ...state.order, cart_items: [...state.order.cart_items] }
         };
       } else {
-        console.log("[cartReducer.js] ITEM NOT FOUND!  :(");
         return {
           ...state,
           order: {
@@ -46,11 +41,10 @@ const cartReducer = (state = initialState, action) => {
       }
 
     case actionTypes.UPDATE_ITEM_CART:
-      console.log("[cartReducer.js] action.payload: ", action.payload.id);
       let updatedItem = state.order.cart_items.find(
         item => item.id == action.payload.id
       );
-      console.log("[cartReducer.js] updatedItem: ", updatedItem);
+
       updatedItem.quantity = action.payload.quantity;
       //updatedItem.subtotal = action.payload.subtotal;
       return {

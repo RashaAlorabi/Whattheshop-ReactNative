@@ -14,7 +14,6 @@ function mapDispatchToProps(dispatch) {
 
 class index extends Component {
   componentDidMount = () => {
-    console.log("goes through here");
     this.props.navigation.replace(this.props.user ? "Profile" : "Login");
   };
   render() {

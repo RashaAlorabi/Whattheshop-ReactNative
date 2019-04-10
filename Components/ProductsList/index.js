@@ -10,6 +10,9 @@ import { List, Content, Spinner, View } from "native-base";
 import { SearchBar } from "react-native-elements";
 import Logo from "../logo";
 class ProductsList extends Component {
+  state = {
+    query: ""
+  };
   static navigationOptions = {
     // title: "Products List",
     headerTitle: <Logo />,
@@ -21,6 +24,7 @@ class ProductsList extends Component {
     this.props.onfetchCartList();
 
   };
+
   render() {
     const { products, categories, loading } = this.props.productsRoot;
     let productsList;
@@ -39,9 +43,11 @@ class ProductsList extends Component {
       <Content>
         <View>
           <SearchBar
-            styel={{ color: "white" }}
+            style={{ color: "white" }}
             placeholder="Type Here..."
-            // onChangeText={this.updateSearch}
+            value={this.state.query}
+            onChangeText={query => this.setState({ query })}
+            lightTheme
           />
         </View>
         <View>{productsList}</View>

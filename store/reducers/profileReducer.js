@@ -14,7 +14,6 @@ const profileReducer = (state = initialState, action) => {
         loading: false
       };
     case actionTypes.PROFILE_UPDATE:
-      console.log(action.payload, "reducer");
       return {
         ...state,
         profile: { created_on: state.profile.created_on, ...action.payload },
