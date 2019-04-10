@@ -1,61 +1,71 @@
-// import React, { Component } from "react";
-// import { connect } from "react-redux";
-
-// import Carousel, { Pagination } from "react-native-snap-carousel";
-// import Swiper from "react-native-swiper";
-// // NativeBase Components
-// import {
-//   Thumbnail,
-//   Text,
-//   Button,
-//   Left,
-//   Body,
-//   Right,
-//   List,
-//   ListItem,
-//   Picker,
-//   Content,
-//   Spinner,
-//   Input,
-//   View,
-//   Image
-// } from "native-base";
-
-// const { width } = Dimensions.get("window");
-// const Slider = props => (
-//   <View style={style.container}>
-//     <Image style={style.image} source={props.uri} />
-//   </View>
-// );
-// const Styles = {
-//   container: {
-//     flex: 1,
-//     justifyContent: "center "
-//   },
-//   image: {
-//     flex: 1
-//   }
-// };
-// export default class extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       ImagesSlider: [
-//         require("../Images/channel.jpeg"),
-//         require("../Images/java.jpeg"),
-//         require("../Images/mac.jpeg")
-//       ]
-//     };
-//   }
-//   render() {
-//     return (
-//       <View>
-//         <Swiper autoplay height={240}>
-//           {this.state.ImagesSlider.map((item, i) => (
-//             <Slider uri={item} key={i} />
-//           ))}
-//         </Swiper>
-//       </View>
-//     );
-//   }
-// }
+import React, { Component } from "react";
+import { Image } from "react-native";
+import {
+  Container,
+  Header,
+  View,
+  DeckSwiper,
+  Card,
+  CardItem,
+  Thumbnail,
+  Text,
+  Left,
+  Body,
+  Icon
+} from "native-base";
+const cards = [
+  {
+    text: "Card One",
+    name: "One",
+    image: require("../Images/java.jpeg")
+  },
+  {
+    text: "Card One",
+    name: "One",
+    image: require("../Images/java.jpeg")
+  },
+  {
+    text: "Card One",
+    name: "One",
+    image: require("../Images/mac.jpeg")
+  }
+];
+// const product = this.props.product;
+// const images = product.images.map(image => ({
+//   uri: image.image
+// }));
+class ImagesSlide extends Component {
+  render() {
+    return (
+      <Container>
+        <Header />
+        <View>
+          <DeckSwiper
+            dataSource={cards}
+            renderItem={item => (
+              <Card style={{ elevation: 3 }}>
+                <CardItem>
+                  <Left>
+                    <Thumbnail source={item.image} />
+                    <Body>
+                      <Text>{item.text}</Text>
+                      <Text note>NativeBase</Text>
+                    </Body>
+                  </Left>
+                </CardItem>
+                <CardItem cardBody>
+                  <Image style={{ height: 300, flex: 1 }} source={item.image} />
+                </CardItem>
+                <CardItem>
+                  <Icon name="heart" style={{ color: "#ED4A6A" }} />
+                  <Text>{item.name}</Text>
+                </CardItem>
+              </Card>
+            )}
+          />
+        </View>
+      </Container>
+    );
+  }
+}
+export default ImagesSlide;

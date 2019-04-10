@@ -9,21 +9,25 @@ import Thanks from "../Components/ThanksMessage";
 const AuthStack = createStackNavigator(
   {
     Login: Login,
+
     // HomePage: HomePage,
     ProductsList: ProductsList,
     ProductDetail: ProductDetail,
     CartList: CartList,
     Checkout: Checkout,
     Thanks: Thanks
+
+    ProductsList: ProductsList
+
   },
   {
     initialRouteName: "Login",
     cardStyle: {
-      backgroundColor: "rgb(20,90,100)"
+      backgroundColor: "white"
     },
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "rgb(20,90,100)"
+        backgroundColor: "white"
       },
       headerTitleStyle: {
         fontWeight: "bold"

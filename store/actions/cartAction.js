@@ -5,7 +5,7 @@ import * as actionCreatores from "./index";
 
 const instance = axios.create({
   // baseURL: "http://127.0.0.1:8000/api/"
-  baseURL: "http://172.20.3.126:80/api/"
+  baseURL: "http://172.20.1.103:80/api/"
 });
 export const fetchCartList = () => {
   return async dispatch => {
