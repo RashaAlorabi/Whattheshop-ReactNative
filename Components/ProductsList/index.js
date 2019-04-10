@@ -5,34 +5,41 @@ import { connect } from "react-redux";
 import ProductListItem from "./ProductListItem";
 import * as actionCreators from "../../store/actions/index";
 
-
 import CartButton from "../CartButton";
 import { List, Content, Spinner, View } from "native-base";
 import { SearchBar } from "react-native-elements";
-
+import Logo from "../logo";
 class ProductsList extends Component {
   static navigationOptions = {
-    title: "Products List",
+    // title: "Products List",
+    headerTitle: <Logo />,
     headerRight: <CartButton />
   };
   componentDidMount = () => {
     this.props.onFetchAllProducts();
+    this.props.onfetchCategories();
     this.props.onfetchCartList();
+
   };
   render() {
-    const { products, loading } = this.props.productsRoot;
+    const { products, categories, loading } = this.props.productsRoot;
     let productsList;
     if (loading) {
       return <Spinner />;
     }
-    productsList = products.map(product => (
-      <ProductListItem key={product.id} product={product} />
+    productsList = categories.map(category => (
+      <ProductListItem
+        key={category.name}
+        products={products}
+        category={category}
+      />
     ));
 
     return (
       <Content>
         <View>
           <SearchBar
+            styel={{ color: "white" }}
             placeholder="Type Here..."
             // onChangeText={this.updateSearch}
           />
@@ -50,6 +57,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onfetchCategories: () => dispatch(actionCreators.fetchCategories()),
     onFetchAllProducts: () => dispatch(actionCreators.fetchAllProducts()),
     onfetchCartList: () => dispatch(actionCreators.fetchCartList())
   };

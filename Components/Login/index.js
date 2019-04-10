@@ -21,6 +21,7 @@ class Login extends Component {
     this.props.checkForToken();
   };
 
+
   state = {
     username: "",
     password: ""
@@ -31,6 +32,7 @@ class Login extends Component {
       this.props.navigation.navigate("ProductsList");
     }
     const { errors } = this.props;
+
     return (
       <Content>
         <Header transparent />
@@ -113,6 +115,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actionCreators.login(userData, navigation)),
   signup: (userData, navigation) =>
     dispatch(actionCreators.signup(userData, navigation)),
+  profile: () => dispatch(actionCreators.profile()),
   checkForToken: navigation =>
     dispatch(actionCreators.checkForExpiredToken(navigation))
 });
