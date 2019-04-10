@@ -1,42 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
-// Components
-import ProductListItem from "./ProductListItem";
-import * as actionCreators from "../../store/actions/index";
-
-import CartButton from "../CartButton";
-import { List, Content, Spinner, View } from "native-base";
+import Category from "../Category";
+import { Content, View } from "native-base";
 import { SearchBar } from "react-native-elements";
 import Logo from "../logo";
-class ProductsList extends Component {
-  state = {
-    query: ""
-  };
+import CartButton from "../CartButton";
+class index extends Component {
   static navigationOptions = {
     // title: "Products List",
     headerTitle: <Logo />,
     headerRight: <CartButton />
   };
-  componentDidMount = () => {
-    this.props.onFetchAllProducts();
-    this.props.onfetchCategories();
-    this.props.onfetchCartList();
+  state = {
+    query: this.props.navigation.getParam("query")
   };
-
+  componentDidMount = () => {
+    this.setState({ query: this.props.navigation.getParam("query") });
+  };
   render() {
-    const { products, categories, loading } = this.props.productsRoot;
+    const { products, loading } = this.props.productsRoot;
     let productsList;
     if (loading) {
       return <Spinner />;
     }
-    productsList = categories.map(category => (
-      <ProductListItem
-        key={category.name}
-        products={products}
-        category={category}
-      />
-    ));
+    productsList = products
+      .filter(product => product.name.includes(this.state.query))
+      .map(product => <Category key={product.id} product={product} />);
 
     return (
       <Content>
@@ -46,11 +35,7 @@ class ProductsList extends Component {
             placeholder="Type Here..."
             value={this.state.query}
             onChangeText={query => this.setState({ query })}
-            onSubmitEditing={() =>
-              this.props.navigation.navigate("SearchPage", {
-                query: this.state.query
-              })
-            }
+            onSubmitEditing={this.search}
             lightTheme
           />
         </View>
@@ -72,7 +57,8 @@ const mapDispatchToProps = dispatch => {
     onfetchCartList: () => dispatch(actionCreators.fetchCartList())
   };
 };
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductsList);
+)(index);

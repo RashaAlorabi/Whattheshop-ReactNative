@@ -27,7 +27,6 @@ class Category extends Component {
   };
   render() {
     const { product } = this.props;
-    console.log(product.images[0]);
     return (
       <TouchableOpacity
         button

@@ -30,13 +30,6 @@ class ProductListItem extends Component {
   };
 
   render() {
-    let order;
-    if (this.props.loading) {
-      order = <Spinner />;
-    } else {
-      order = this.props.order;
-    }
-
     const { category, products } = this.props;
     const categoryProducts = [...products];
 
@@ -44,7 +37,7 @@ class ProductListItem extends Component {
       .filter(product =>
         product.categories.map(cate => cate.name).includes(category.name)
       )
-      .map(cp => <Category product={cp} />);
+      .map(cp => <Category key={cp.id} product={cp} />);
     if (this.props.loading) {
       return <Spinner />;
     } else {
@@ -70,13 +63,11 @@ class ProductListItem extends Component {
         </View>
       );
     }
-
   }
 }
 const mapStateToProps = state => {
   return {
-    loading: state.productsRoot.loading,
-    order: state.cartRoot.order
+    loading: state.productsRoot.loading
   };
 };
 

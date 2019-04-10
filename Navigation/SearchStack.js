@@ -2,14 +2,14 @@ import { createStackNavigator } from "react-navigation";
 
 import ProductsList from "../Components/ProductsList";
 import ProductDetail from "../Components/ProductDetail";
+import SearchPage from "../Components/SearchPage";
 
 const SearchStack = createStackNavigator(
   {
-    ProductsList: ProductsList,
-    ProductDetail: ProductDetail
+    SearchPage: SearchPage
   },
   {
-    initialRouteName: "ProductsList",
+    initialRouteName: "SearchPage",
     cardStyle: {
       backgroundColor: "white"
     },
