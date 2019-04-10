@@ -12,8 +12,8 @@ export {
   filterByCategory
 } from "./productsAction";
 
-//   export { profile, profileUpdate } from "./profileAction";
-//   export { checkout } from "./ordersAction";
+export { profile, profileUpdate } from "./profileAction";
+export { checkout } from "./ordersAction";
 export {
   fetchCartList,
   addItemToCart,

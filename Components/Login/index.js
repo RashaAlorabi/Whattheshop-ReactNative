@@ -17,19 +17,12 @@ import {
 } from "native-base";
 
 class Login extends Component {
-  componentDidMount = () => {
-    //this.props.checkForToken();
-  };
-
   state = {
     username: "",
     password: ""
   };
 
   render() {
-    if (this.props.user) {
-      this.props.navigation.navigate("ProductsList");
-    }
     return (
       <Content>
         <Header transparent />
@@ -102,6 +95,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actionCreators.login(userData, navigation)),
   signup: (userData, navigation) =>
     dispatch(actionCreators.signup(userData, navigation)),
+  profile: () => dispatch(actionCreators.profile()),
   checkForToken: navigation =>
     dispatch(actionCreators.checkForExpiredToken(navigation))
 });

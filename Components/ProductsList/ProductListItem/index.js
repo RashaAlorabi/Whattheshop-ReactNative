@@ -71,6 +71,7 @@ class ProductListItem extends Component {
         </View>
       );
     }
+
   }
 }
 const mapStateToProps = state => {
