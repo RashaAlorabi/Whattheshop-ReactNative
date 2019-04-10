@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import ProductListItem from "./ProductListItem";
 import * as actionCreators from "../../store/actions/index";
 
-import { List, Content, Spinner } from "native-base";
-
+import { List, Content, Spinner, View } from "native-base";
+import { SearchBar } from "react-native-elements";
 class ProductsList extends Component {
   static navigationOptions = {
     title: "Products List"
@@ -26,7 +26,17 @@ class ProductsList extends Component {
       <ProductListItem key={product.id} product={product} />
     ));
 
-    return <Content>{productsList}</Content>;
+    return (
+      <Content>
+        <View>
+          <SearchBar
+            placeholder="Type Here..."
+            // onChangeText={this.updateSearch}
+          />
+        </View>
+        <View>{productsList}</View>
+      </Content>
+    );
   }
 }
 const mapStateToProps = state => {

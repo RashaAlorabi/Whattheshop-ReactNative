@@ -22,12 +22,12 @@ const BottomNav = createBottomTabNavigator(
             iconName = "account";
             iconType = "MaterialCommunityIcons";
             break;
-          case "Coffee":
-            iconName = "coffee";
+          case "CartStack":
+            iconName = "cart";
             iconType = "MaterialCommunityIcons";
             break;
-          case "Order":
-            iconName = "cart";
+          case "ProductStack":
+            iconName = "home";
             iconType = "MaterialCommunityIcons";
             break;
           default:
