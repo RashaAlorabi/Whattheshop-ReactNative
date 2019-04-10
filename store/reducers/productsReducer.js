@@ -8,7 +8,7 @@ const initialState = {
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_ALL_PRODUCTS:
-      // console.log(
+      //
       //   "[productsReducer.js] products action.payload",
       //   action.payload
       // );

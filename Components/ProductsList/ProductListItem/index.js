@@ -40,7 +40,6 @@ class ProductListItem extends Component {
     } else {
       order = this.props.order;
     }
-    console.log(order, "product list item printing order");
 
     const { product } = this.props;
     return (

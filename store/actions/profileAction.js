@@ -8,12 +8,11 @@ const instance = axios.create({
 });
 
 export const profile = () => {
-  console.log("called profile");
   return async dispatch => {
     try {
       const res = await instance.get("profile/");
       const Profile = res.data;
-      console.log("heres the profile: ");
+
       // dispatch(resetErrors());
       dispatch({
         type: actionTypes.PROFILE,
@@ -37,7 +36,7 @@ export const profileUpdate = (userData, profileData, navigation) => {
         profile: { ...profileData }
       });
       const UpdatedProfile = res.data;
-      //   console.log(UpdatedProfile, "here is the profile update action");
+      //
       navigation.navigate("Profile");
       dispatch({
         type: actionTypes.PROFILE_UPDATE,

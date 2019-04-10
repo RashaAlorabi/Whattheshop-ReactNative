@@ -24,7 +24,6 @@ export const fetchCartList = () => {
 
 export const addItemToCart = (orderID, productID, quantity) => {
   return async dispatch => {
-    console.log(orderID, productID, quantity);
     try {
       const res = await instance.post(
         `order/${orderID}/items/${productID}/add/`,
@@ -66,7 +65,7 @@ export const updateItemCart = (itemID, quantity) => {
       });
       dispatch(fetchCartList());
       const updateItem = res.data;
-      console.log("[cartAction.js] updateItem: ", updateItem);
+
       dispatch({
         type: actionTypes.UPDATE_ITEM_CART,
         payload: updateItem

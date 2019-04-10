@@ -49,7 +49,7 @@ class CartListItem extends Component {
     }
 
     const { item } = this.props;
-    console.log("item image url : ", item.product.images[0].image);
+
     return (
       <Card>
         <CardItem>
