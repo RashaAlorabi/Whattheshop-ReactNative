@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 // Store
 import store from "./store";
 import AppContainer from "./Navigation";
+
 class App extends Component {
   state = {
     loading: true

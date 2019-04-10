@@ -31,6 +31,7 @@ export const addItemToCart = (orderID, productID, quantity) => {
         { quantity: quantity }
       );
       dispatch(actionCreatores.fetchAllProducts());
+      dispatch(fetchCartList());
       const newItem = res.data;
       dispatch({
         type: actionTypes.ADD_ITEM_CART,

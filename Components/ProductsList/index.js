@@ -6,11 +6,12 @@ import ProductListItem from "./ProductListItem";
 import * as actionCreators from "../../store/actions/index";
 
 import { List, Content, Spinner } from "native-base";
+import CartButton from "../CartButton";
 
 class ProductsList extends Component {
   static navigationOptions = {
-    title: "Products List"
-    // headerRight: <CartButton />
+    title: "Products List",
+    headerRight: <CartButton />
   };
   componentDidMount = () => {
     this.props.onFetchAllProducts();
