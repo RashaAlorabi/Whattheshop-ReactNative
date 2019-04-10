@@ -17,16 +17,22 @@ class ProductsList extends Component {
   };
   componentDidMount = () => {
     this.props.onFetchAllProducts();
-    // this.props.onfetchCartList();
+    this.props.onfetchCategories();
+    this.props.onfetchCartList();
+
   };
   render() {
-    const { products, loading } = this.props.productsRoot;
+    const { products, categories, loading } = this.props.productsRoot;
     let productsList;
     if (loading) {
       return <Spinner />;
     }
-    productsList = products.map(product => (
-      <ProductListItem key={product.id} product={product} />
+    productsList = categories.map(category => (
+      <ProductListItem
+        key={category.name}
+        products={products}
+        category={category}
+      />
     ));
 
     return (
@@ -51,6 +57,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onfetchCategories: () => dispatch(actionCreators.fetchCategories()),
     onFetchAllProducts: () => dispatch(actionCreators.fetchAllProducts()),
     onfetchCartList: () => dispatch(actionCreators.fetchCartList())
   };

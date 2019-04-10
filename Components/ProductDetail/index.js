@@ -17,7 +17,9 @@ import {
   Content,
   Spinner,
   Input,
-  Image
+  Image,
+  View,
+  Icon
 } from "native-base";
 
 //List
@@ -28,125 +30,92 @@ class ProductDetail extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam("product").name
-      // headerRight: <CartButton />
     };
   };
   state = {
-    quantity: ""
+    quantity: 0
   };
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  // _renderItem({ item, index }) {
-  //   return <ImagesSlide data={item} />;
-  // }
-  // get pagination() {
-  //   const { entries, activeSlide } = this.state;
-  //   return (
-  //     <Pagination
-  //       dotsLength={entries.length}
-  //       activeDotIndex={activeSlide}
-  //       containerStyle={{ backgroundColor: "rgba(0, 0, 0, 0.75)" }}
-  //       dotStyle={{
-  //         width: 10,
-  //         height: 10,
-  //         borderRadius: 5,
-  //         marginHorizontal: 8,
-  //         backgroundColor: "rgba(255, 255, 255, 0.92)"
-  //       }}
-  //       inactiveDotStyle={
-  //         {
-  //           // Define styles for inactive dots here
-  //         }
-  //       }
-  //       inactiveDotOpacity={0.4}
-  //       inactiveDotScale={0.6}
-  //     />
-  //   );
-  // }
+
   render() {
     let order;
-    // if (this.props.loading) {
-    //   order = <Spinner />;
-    // } else {
-    order = this.props.order;
-    // }
-
-    // if (loading) return <Content />;
+    if (this.props.loading) {
+      order = <Spinner />;
+    } else {
+      order = this.props.order;
+    }
     const product = this.props.navigation.getParam("product");
     return (
-      <Content>
-        <List>
-          <ImagesSlide />
-          <ListItem>
-            <Left>
-              {/* <Image
-                source={{ uri: product.images[0].image }}
-                style={{ height: 200, width: 50, flex: 1 }}
-              /> */}
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontSize: 19,
-                  fontWeight: "bold",
-                  padding: 10
-                }}
-              >
-                {product.name}
-              </Text>
-              <Text style={{ flex: 1 }}>Price</Text>
-              <Text
-                style={{
-                  fontSize: 19,
+      <View>
+        <ImagesSlide product={product} />
 
-                  padding: 5
-                }}
-              >
-                {product.price}
-              </Text>
-            </Left>
-            <Body />
-          </ListItem>
-          <ListItem>
-            <NumericInput
-              value={this.state.quantity}
-              onChange={quantity => this.setState({ quantity })}
-            />
-          </ListItem>
-          <Button
-            full
-            danger
-            button
-            onPress={() =>
-              this.props.addItemToCart(
-                order.id,
-                product.id,
-                this.state.quantity
-              )
-            }
-          >
-            <Text>Add to cart</Text>
-          </Button>
+        <View style={{ paddingLeft: 10 }}>
           <Text
             style={{
               fontSize: 19,
-              fontWeight: "bold",
-              padding: 5
+              fontWeight: "bold"
             }}
           >
-            Description{" "}
+            {product.name}
           </Text>
-          <Text
-            style={{
-              fontSize: 15,
-
-              padding: 5
-            }}
-          >
-            {product.description}
-          </Text>
-        </List>
-      </Content>
+        </View>
+        <View style={{ paddingLeft: 10, paddingTop: 5 }}>
+          <Text>Price : {product.price}</Text>
+        </View>
+        {/* <ListItem>
+          <NumericInput
+            value={this.state.quantity}
+            onChange={quantity => this.setState({ quantity })}
+          />
+        </ListItem> */}
+        <View style={{ paddingLeft: 10 }}>
+          <NumericInput
+            initValue={this.state.quantity}
+            value={this.state.quantity}
+            onChange={value => this.setState({ quantity: value })}
+            totalWidth={100}
+            totalHeight={50}
+            iconSize={25}
+            minValue={0}
+            maxValue={150}
+            step={1}
+            rounded
+            textColor="green"
+            iconStyle={{ color: "black" }}
+            rightButtonBackgroundColor="white"
+            leftButtonBackgroundColor="white"
+          />
+          {this.state.quantity <= product.stock ? (
+            <Button
+              full
+              danger
+              button
+              onPress={() =>
+                this.props.addItemToCart(
+                  order.id,
+                  product.id,
+                  this.state.quantity
+                )
+              }
+            >
+              <View>
+                <Text>Add to cart</Text>
+              </View>
+            </Button>
+          ) : (
+            <Text>out of stock</Text>
+          )}
+        </View>
+        <View
+          style={{
+            borderBottomColor: "black",
+            borderBottomWidth: 1
+          }}
+        />
+        <Text>{product.description}</Text>
+      </View>
     );
   }
 }
