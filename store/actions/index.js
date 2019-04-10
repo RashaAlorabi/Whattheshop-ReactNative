@@ -12,7 +12,7 @@ export {
   filterByCategory
 } from "./productsAction";
 
-//   export { profile, profileUpdate } from "./profileAction";
+export { profile, profileUpdate } from "./profileAction";
 export { checkout } from "./ordersAction";
 export {
   fetchCartList,

@@ -2,26 +2,27 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import Login from "../Components/Login";
 import ProductsList from "../Components/ProductsList";
 import ProductDetail from "../Components/ProductDetail";
+import Profile from "../Components/ProfilePage";
+import Auth from "../Components/Auth";
 //import HomePage from "../Components/HomePage";
 import CartList from "../Components/CartList";
 import Checkout from "../Components/Checkout";
 import Thanks from "../Components/ThanksMessage";
 const AuthStack = createStackNavigator(
   {
+    Auth: Auth,
     Login: Login,
-
+    Profile: Profile,
     // HomePage: HomePage,
     ProductsList: ProductsList,
     ProductDetail: ProductDetail,
     CartList: CartList,
     Checkout: Checkout,
-    Thanks: Thanks
-
-    ProductsList: ProductsList
+    Thanks: Thanks,
 
   },
   {
-    initialRouteName: "Login",
+    initialRouteName: "Auth",
     cardStyle: {
       backgroundColor: "white"
     },

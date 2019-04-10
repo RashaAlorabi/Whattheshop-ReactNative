@@ -17,7 +17,7 @@ class ProductsList extends Component {
   };
   componentDidMount = () => {
     this.props.onFetchAllProducts();
-    this.props.onfetchCartList();
+    // this.props.onfetchCartList();
   };
   render() {
     const { products, loading } = this.props.productsRoot;
