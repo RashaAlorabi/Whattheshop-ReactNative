@@ -2,14 +2,18 @@ import { combineReducers } from "redux";
 
 import productsReducer from "./productsReducer";
 import authenticationsReducer from "./authenticationsReducer";
-// import ordersReducer from "./ordersReducer";
-// import profileReducer from "./profileReducer";
+
+import profileReducer from "./profileReducer";
+import ordersReducer from "./ordersReducer";
+
 import cartReducer from "./cartReducer";
+import errorsReducer from "./errorsReducer";
 
 export default combineReducers({
   productsRoot: productsReducer,
   authRoot: authenticationsReducer,
-  //   ordersRoot: ordersReducer,
-  //   profileRoot: profileReducer,
-  cartRoot: cartReducer
+  profileRoot: profileReducer,
+  ordersRoot: ordersReducer,
+  cartRoot: cartReducer,
+  errorRoot: errorsReducer,
 });

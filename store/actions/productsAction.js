@@ -3,16 +3,15 @@ import axios from "axios";
 
 const instance = axios.create({
   //baseURL: "http://127.0.0.1:8000/api/"
-  baseURL: "http://172.20.1.103:80/api/"
+  baseURL: "http://192.168.8.122/api/"
+
 });
 
 export const fetchAllProducts = () => {
-  console.log("[productsAction.js] fetch products called");
   return async dispatch => {
     try {
       const response = await instance.get("products/list/");
       const products = response.data;
-
       dispatch({
         type: actionTypes.FETCH_ALL_PRODUCTS,
         payload: products

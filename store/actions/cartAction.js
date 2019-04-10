@@ -5,7 +5,8 @@ import * as actionCreatores from "./index";
 
 const instance = axios.create({
   // baseURL: "http://127.0.0.1:8000/api/"
-  baseURL: "http://172.20.1.103:80/api/"
+  baseURL: "http://192.168.8.122/api/"
+
 });
 export const fetchCartList = () => {
   return async dispatch => {
@@ -24,13 +25,13 @@ export const fetchCartList = () => {
 
 export const addItemToCart = (orderID, productID, quantity) => {
   return async dispatch => {
-    console.log(orderID, productID, quantity);
     try {
       const res = await instance.post(
         `order/${orderID}/items/${productID}/add/`,
         { quantity: quantity }
       );
       dispatch(actionCreatores.fetchAllProducts());
+      dispatch(fetchCartList());
       const newItem = res.data;
       dispatch({
         type: actionTypes.ADD_ITEM_CART,
@@ -65,7 +66,7 @@ export const updateItemCart = (itemID, quantity) => {
       });
       dispatch(fetchCartList());
       const updateItem = res.data;
-      console.log("[cartAction.js] updateItem: ", updateItem);
+
       dispatch({
         type: actionTypes.UPDATE_ITEM_CART,
         payload: updateItem

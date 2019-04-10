@@ -36,7 +36,6 @@ class ProductListItem extends Component {
     } else {
       order = this.props.order;
     }
-    //console.log(order, "product list item printing order");
 
     const { category, products } = this.props;
     const categoryProducts = [...products];
@@ -71,6 +70,7 @@ class ProductListItem extends Component {
         </View>
       );
     }
+
   }
 }
 const mapStateToProps = state => {
