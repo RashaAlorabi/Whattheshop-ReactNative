@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { Linking } from "react-native";
 // Components
 
 import * as actionCreators from "../../store/actions/index";
@@ -40,7 +40,15 @@ class Checkout extends Component {
   componentDidMount = () => {
     this.props.onfetchCartList();
   };
-
+  handlePay = () => {
+    this.props.onCheckout(
+      this.props.cartRoot.order.id,
+      {
+        phoneNumber: "537518970"
+      },
+      this.props.navigation
+    );
+  };
   render() {
     const { order, loading } = this.props.cartRoot;
     let cartsList;
@@ -64,6 +72,7 @@ class Checkout extends Component {
       color: "#686868",
       fontWeight: "bold"
     };
+
     return (
       <Container style={{ margin: 10 }}>
         <View style={{ marginBottom: 70 }}>
@@ -147,9 +156,7 @@ class Checkout extends Component {
                   button
                   full
                   style={{ backgroundColor: "purple" }}
-                  onPress={() =>
-                    this.props.onCheckout(order.id, this.props.navigation)
-                  }
+                  onPress={this.handlePay}
                 >
                   <Text> Place Order</Text>
                 </Button>
@@ -169,8 +176,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onCheckout: (orderID, navigation) =>
-      dispatch(actionCreators.checkout(orderID, navigation)),
+    onCheckout: (orderID, info, navigation) =>
+      dispatch(actionCreators.checkout(orderID, info, navigation)),
     onfetchCartList: () => dispatch(actionCreators.fetchCartList())
   };
 };

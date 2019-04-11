@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "madebysaudis",
     "name": "Whattheshop-ReactNative",
     "slug": "Whattheshop-ReactNative",
     "privacy": "public",

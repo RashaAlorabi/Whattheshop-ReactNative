@@ -21,12 +21,14 @@ class App extends Component {
   }
 
   render() {
+    const prefix = Expo.Linking.makeUrl("/");
+
     if (this.state.loading) {
       return <Spinner color="white" />;
     }
     return (
       <Provider store={store}>
-        <AppContainer />
+        <AppContainer uriPrefix={prefix} />
       </Provider>
     );
   }

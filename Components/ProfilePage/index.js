@@ -49,7 +49,9 @@ class index extends Component {
             <View style={styles.header} />
             <Button
               transparent
-              onPress={() => this.props.logout(this.props.navigation)}
+              onPress={() =>
+                this.props.logout(this.props.navigation.getParam("navigation"))
+              }
             >
               <Icon
                 name="logout"

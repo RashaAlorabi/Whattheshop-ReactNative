@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Image, View } from "react-native";
 import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
+import { connect } from "react-redux";
 import Logo from "../logo";
 import {
   Container,
@@ -16,9 +17,26 @@ import {
   Body,
   H1
 } from "native-base";
+import { Linking } from "expo";
+// import console = require("console");
+function mapStateToProps(state) {
+  return { order: state.cartRoot.order };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    finalCheckout: orderID => dispatch(actionCreators.final_checkout(orderID)),
+    checkExpired: () => dispatch(actionCreators.checkForExpiredToken()),
+    fetchCartList: () => dispatch(actionCreators.fetchCartList())
+  };
+}
 class index extends Component {
   static navigationOptions = {
     headerTitle: <Logo />
+  };
+  componentDidMount = async () => {
+    console.log("thanks");
+
+    this.props.finalCheckout(this.props.order.id);
   };
   render() {
     return (
@@ -47,4 +65,7 @@ class index extends Component {
   }
 }
 
-export default index;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(index);

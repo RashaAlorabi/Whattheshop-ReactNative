@@ -5,9 +5,9 @@ import Checkout from "../Components/Checkout";
 import Thanks from "../Components/ThanksMessage";
 const CartStack = createStackNavigator(
   {
-    CartList: CartList,
-    Checkout: Checkout,
-    Thanks: Thanks
+    CartList: { screen: CartList },
+    Checkout: { screen: Checkout },
+    Thanks: { screen: Thanks, path: "thanks" }
   },
   {
     initialRouteName: "CartList",
