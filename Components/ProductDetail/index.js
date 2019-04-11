@@ -26,11 +26,16 @@ import {
 //List
 import ProductsList from "../../Components/ProductsList/index";
 import ImagesSlide from "../../Components/ProductDetail/ImagesSlide";
+import CartButton from "../CartButton";
+
+import Logo from "../logo";
 
 class ProductDetail extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam("product").name
+      headerTitle: navigation.getParam("product").name,
+      headerTitle: <Logo />,
+      headerRight: <CartButton />
     };
   };
   state = {
@@ -52,18 +57,26 @@ class ProductDetail extends Component {
       <View>
         <ImagesSlide product={product} />
 
-        <View style={{ paddingLeft: 10 }}>
+        <View
+          style={{
+            paddingLeft: 10,
+            backgroundColor: "gray",
+            width: 100,
+            borderBottomRightRadius: 50
+          }}
+        >
           <Text
             style={{
               fontSize: 19,
-              fontWeight: "bold"
+              fontWeight: "bold",
+              color: "white"
             }}
           >
             {product.name}
           </Text>
         </View>
         <View style={{ paddingLeft: 10, paddingTop: 5 }}>
-          <Text>Price : {product.price}</Text>
+          <Text>Price : {product.price} SR</Text>
         </View>
         <View style={{ paddingLeft: 10, paddingTop: 5 }}>
           <Text>Stock : {product.stock}</Text>
@@ -90,8 +103,7 @@ class ProductDetail extends Component {
           <View style={{ paddingTop: 5, paddingBottom: 5 }}>
             <Button
               full
-              danger
-              button
+              style={{ backgroundColor: "#009973", borderRadius: 30 }}
               onPress={() =>
                 this.props.addItemToCart(
                   order.id,
@@ -100,7 +112,12 @@ class ProductDetail extends Component {
                 )
               }
             >
-              <Text>Add to cart</Text>
+              <Icon
+                name="cart"
+                style={{ color: "white", fontSize: 25 }}
+                type="MaterialCommunityIcons"
+              />
+              <Text style={{ color: "white", fontSize: 20 }}>Add to cart</Text>
             </Button>
           </View>
         ) : (
@@ -113,16 +130,28 @@ class ProductDetail extends Component {
             borderBottomWidth: 1
           }}
         />
-        <View style={{ paddingLeft: 10, paddingTop: 5, paddingBottom: 5 }}>
+        <View
+          style={{
+            paddingLeft: 10,
+            paddingTop: 5,
+            paddingBottom: 5,
+            backgroundColor: "gray",
+            width: 130,
+            borderBottomRightRadius: 50
+          }}
+        >
           <Text
             style={{
-              fontSize: 19,
-              fontWeight: "bold"
+              fontSize: 17,
+              fontWeight: "bold",
+              color: "white"
             }}
           >
             Description:
-            <Text>{product.description}</Text>
           </Text>
+        </View>
+        <View>
+          <Text>{product.description}</Text>
         </View>
       </View>
     );

@@ -15,18 +15,19 @@ class index extends Component {
     const { order } = this.props;
     return (
       <ListItem style={{ overflow: "scroll" }}>
-        <Card>
-          <CardItem header bordered>
-            <Text>Order ID: {order.id}</Text>
+        <Card style={{ width: 380 }}>
+          <CardItem header bordered style={{ backgroundColor: "lightgray" }}>
+            <Text style={{ color: "black" }}>Order ID: {order.id}</Text>
+          </CardItem>
+
+          <CardItem>
+            <Text>Date: {order.order_date}</Text>
           </CardItem>
           <CardItem>
             <Text>Products: {order.cart_items.length}</Text>
           </CardItem>
-          <CardItem>
-            <Text>Total: {order.total}</Text>
-          </CardItem>
-          <CardItem>
-            <Text>Date: {order.order_date}</Text>
+          <CardItem footer bordered>
+            <Text>Total: {order.total} SR</Text>
           </CardItem>
         </Card>
       </ListItem>

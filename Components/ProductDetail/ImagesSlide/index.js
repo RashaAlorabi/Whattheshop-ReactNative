@@ -21,7 +21,7 @@ class ImagesSlide extends Component {
     const product = this.props.product;
 
     return (
-      <View style={{ marginBottom: 360, marginTop: 20 }}>
+      <View style={{ marginBottom: 360 }}>
         <DeckSwiper
           dataSource={product.images}
           renderItem={item => (
@@ -29,7 +29,7 @@ class ImagesSlide extends Component {
               <CardItem />
               <CardItem cardBody>
                 <Image
-                  style={{ height: 300, flex: 1 }}
+                  style={{ height: 300, flex: 2 }}
                   source={{ uri: item.image }}
                 />
               </CardItem>

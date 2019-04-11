@@ -6,7 +6,8 @@ import ProductListItem from "./ProductListItem";
 import * as actionCreators from "../../store/actions/index";
 
 import CartButton from "../CartButton";
-import { List, Content, Spinner, View } from "native-base";
+import { List, Content, Spinner, View, Text, Icon } from "native-base";
+
 import { SearchBar } from "react-native-elements";
 import Logo from "../logo";
 class ProductsList extends Component {
@@ -53,6 +54,31 @@ class ProductsList extends Component {
             }
             lightTheme
           />
+        </View>
+        <View
+          style={{
+            backgroundColor: "gray",
+            padding: 10,
+            borderBottomRightRadius: 50
+          }}
+        >
+          <Text
+            style={{
+              color: "white",
+              fontSize: 20,
+              fontFamily: "Gill Sans",
+              fontWeight: "55",
+
+              padding: 5
+            }}
+          >
+            <Icon
+              name="shopping-bag"
+              style={{ color: "white", fontSize: 20 }}
+              type="FontAwesome"
+            />
+            Shop By Catagory:
+          </Text>
         </View>
         <View>{productsList}</View>
       </Content>

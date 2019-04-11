@@ -19,11 +19,13 @@ import {
   Right,
   Spinner,
   TextInput,
-  View
+  View,
+  List,
+  ListItem
 } from "native-base";
 class Category extends Component {
   state = {
-    quantity: 0
+    quantity: 1
   };
   render() {
     const { product } = this.props;
@@ -36,14 +38,20 @@ class Category extends Component {
           })
         }
         style={{
-          height: 400,
-          width: 130,
+          height: 440,
+          width: 140,
           marginLeft: 20,
           borderWidth: 0.5,
-          borderColor: "#dddddd"
+          borderColor: "#dddddd",
+          borderBottomLeftRadius: 20,
+          borderBottomRightRadius: 20
         }}
       >
-        <View style={{ flex: 2 }}>
+        <View
+          style={{
+            flex: 2
+          }}
+        >
           {product.images.length ? (
             <Image
               source={{ uri: product.images[0].image }}
@@ -58,15 +66,20 @@ class Category extends Component {
             <Image source={require("../ProductDetail/Images/channel.jpeg")} />
           )}
         </View>
-        <View style={{ paddingLeft: 10, paddingTop: 7 }}>
-          <Text>{product.name}</Text>
-        </View>
-        <View style={{ paddingLeft: 10 }}>
-          <Text> Price :{product.price}</Text>
-        </View>
-        <View style={{ paddingLeft: 10 }}>
-          <Text>Stock:{product.stock}</Text>
-        </View>
+        <List style={{ color: "gray" }}>
+          <View style={{ paddingLeft: 10 }}>
+            <Text style={{ fontWeight: "400" }}>{product.name}</Text>
+          </View>
+
+          <View style={{ paddingLeft: 10, paddingTop: 7 }}>
+            <Text>Price:{product.price} SR</Text>
+          </View>
+
+          <View style={{ paddingLeft: 10, paddingTop: 7 }}>
+            <Text>Stock:{product.stock}</Text>
+          </View>
+        </List>
+
         <View style={{ paddingLeft: 10 }}>
           <NumericInput
             initValue={this.state.quantity}
@@ -85,22 +98,40 @@ class Category extends Component {
             leftButtonBackgroundColor="white"
           />
           {this.state.quantity <= product.stock ? (
-            <Button
-              transparent
-              button
-              onPress={() =>
-                this.props.addItemToCart(
-                  this.props.order.id,
-                  product.id,
-                  this.state.quantity
-                )
-              }
-            >
-              <Icon type="AntDesign" name="shoppingcart" />
-              <Icon type="MaterialIcons" name="favorite-border" />
-            </Button>
+            <View>
+              <Button
+                transparent
+                button
+                onPress={() =>
+                  this.props.addItemToCart(
+                    this.props.order.id,
+                    product.id,
+                    this.state.quantity
+                  )
+                }
+              >
+                <Icon
+                  type="AntDesign"
+                  name="shoppingcart"
+                  style={{ color: "#009973" }}
+                />
+                <Icon
+                  type="MaterialIcons"
+                  name="favorite-border"
+                  style={{ color: "#009973" }}
+                />
+              </Button>
+              <View style={{ backgroundColor: "lightgreen", borderRadius: 30 }}>
+                <Text style={{ color: "white", fontSize: 11 }}> In Stock</Text>
+              </View>
+            </View>
           ) : (
-            <Text>out of stock</Text>
+            <View style={{ backgroundColor: "lightcoral", borderRadius: 30 }}>
+              <Text style={{ color: "white", fontSize: 10 }}>
+                {" "}
+                Out of stock
+              </Text>
+            </View>
           )}
         </View>
       </TouchableOpacity>

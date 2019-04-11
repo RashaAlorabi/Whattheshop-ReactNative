@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Image, View } from "react-native";
 import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
+import Logo from "../logo";
 import {
   Container,
   Header,
@@ -16,31 +17,31 @@ import {
   H1
 } from "native-base";
 class index extends Component {
+  static navigationOptions = {
+    headerTitle: <Logo />
+  };
   render() {
     return (
       <Container>
-        <Icon />
-        <H1>Thank you for your order</H1>
-        <Text note>April 15, 2016</Text>
-        <View style={{ flex: 1 }}>
-          <ProgressSteps>
-            <ProgressStep label="First Step">
-              <View style={{ alignItems: "center" }}>
-                <Text>This is the content within step 1!</Text>
-              </View>
-            </ProgressStep>
-            <ProgressStep label="Second Step">
-              <View style={{ alignItems: "center" }}>
-                <Text>This is the content within step 2!</Text>
-              </View>
-            </ProgressStep>
-            <ProgressStep label="Third Step">
-              <View style={{ alignItems: "center" }}>
-                <Text>This is the content within step 3!</Text>
-              </View>
-            </ProgressStep>
-          </ProgressSteps>
-        </View>
+        <Icon
+          style={{
+            marginLeft: 140,
+            marginRight: 140,
+            marginTop: 140,
+            fontSize: 130,
+            color: "#009973"
+          }}
+          type="AntDesign"
+          name="checkcircle"
+        />
+        <H1
+          style={{ marginLeft: 50, fontFamily: "Gill Sans", color: "purple" }}
+        >
+          Thank you for your order
+        </H1>
+        <Text note style={{ marginLeft: 80 }}>
+          Check your Email , for more detail
+        </Text>
       </Container>
     );
   }

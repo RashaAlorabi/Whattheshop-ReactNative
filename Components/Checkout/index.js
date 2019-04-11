@@ -30,6 +30,7 @@ import CartButton from "../CartButton";
 import CheckoutCartItem from "../Checkout/CheckoutCartItem/index";
 import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
 import Logo from "../logo";
+import { ScrollView } from "react-native-gesture-handler";
 class Checkout extends Component {
   static navigationOptions = {
     title: "Order Summary",
@@ -65,18 +66,14 @@ class Checkout extends Component {
     };
     return (
       <Container style={{ margin: 10 }}>
-        <View style={{ marginBottom: 90 }}>
+        <View style={{ marginBottom: 70 }}>
           <ProgressSteps {...progressStepsStyle}>
             <ProgressStep
               label="First Step"
               nextBtnTextStyle={buttonTextStyle}
               previousBtnTextStyle={buttonTextStyle}
               centerContainer
-            >
-              <View style={{ alignItems: "center" }}>
-                <Text>This is the content within step 1!</Text>
-              </View>
-            </ProgressStep>
+            />
             <ProgressStep
               label="Second Step"
               nextBtnTextStyle={buttonTextStyle}
@@ -89,76 +86,77 @@ class Checkout extends Component {
             </ProgressStep>
           </ProgressSteps>
         </View>
+        <ScrollView>
+          <Card>
+            <CardItem header bordered style={{ backgroundColor: "#009973" }}>
+              <Text style={{ color: "white" }}>Delivery Options: </Text>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <ListItem>
+                  <CheckBox checked={true} color="green" />
+                  <Text>Standard : Free</Text>
+                </ListItem>
+                <ListItem>
+                  <CheckBox checked={false} color="green" />
+                  <Text>Next day delievery: 3.45 SR</Text>
+                </ListItem>
+              </Body>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem header bordered style={{ backgroundColor: "#009973" }}>
+              <Text style={{ color: "white" }}>Payment: </Text>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <ListItem>
+                  <CheckBox checked={true} color="green" />
 
-        <Card>
-          <CardItem header bordered style={{ backgroundColor: "#009973" }}>
-            <Text style={{ color: "white" }}>Delivery Options: </Text>
-          </CardItem>
-          <CardItem>
-            <Body>
-              <ListItem>
-                <CheckBox checked={true} color="green" />
-                <Text>Standard : Free</Text>
-              </ListItem>
-              <ListItem>
-                <CheckBox checked={false} color="green" />
-                <Text>Next day delievery: 3.45 SR</Text>
-              </ListItem>
-            </Body>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem header bordered style={{ backgroundColor: "#009973" }}>
-            <Text style={{ color: "white" }}>Payment: </Text>
-          </CardItem>
-          <CardItem>
-            <Body>
-              <ListItem>
-                <CheckBox checked={true} color="green" />
+                  <Text>Paypal</Text>
+                </ListItem>
+                <ListItem>
+                  <CheckBox checked={false} color="green" />
 
-                <Text>Paypal</Text>
-              </ListItem>
-              <ListItem>
-                <CheckBox checked={false} color="green" />
+                  <Text>Credit / Debit card</Text>
+                </ListItem>
+                <ListItem>
+                  <CheckBox checked={false} color="green" />
 
-                <Text>Credit / Debit card</Text>
-              </ListItem>
-              <ListItem>
-                <CheckBox checked={false} color="green" />
+                  <Text>Pay when you get the package</Text>
+                </ListItem>
+              </Body>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem header bordered style={{ backgroundColor: "#009973" }}>
+              <Text style={{ color: "white" }}>Order Summary: </Text>
+            </CardItem>
 
-                <Text>Pay when you get the package</Text>
-              </ListItem>
-            </Body>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem header bordered style={{ backgroundColor: "#009973" }}>
-            <Text style={{ color: "white" }}>Order Summary: </Text>
-          </CardItem>
-
-          <List>{cartsList}</List>
-        </Card>
-        <Footer>
-          <FooterTab>
-            <Body>
-              <H3 style={{ fontFamily: "Thonburi" }}>
-                Total: {order.total} SR
-              </H3>
-            </Body>
-            <Body>
-              <Button
-                button
-                full
-                style={{ backgroundColor: "purple" }}
-                onPress={() =>
-                  this.props.onCheckout(order.id, this.props.navigation)
-                }
-              >
-                <Text> Place Order</Text>
-              </Button>
-            </Body>
-          </FooterTab>
-        </Footer>
+            <List>{cartsList}</List>
+          </Card>
+          <Footer>
+            <FooterTab>
+              <Body>
+                <H3 style={{ fontFamily: "Thonburi" }}>
+                  Total: {order.total} SR
+                </H3>
+              </Body>
+              <Body>
+                <Button
+                  button
+                  full
+                  style={{ backgroundColor: "purple" }}
+                  onPress={() =>
+                    this.props.onCheckout(order.id, this.props.navigation)
+                  }
+                >
+                  <Text> Place Order</Text>
+                </Button>
+              </Body>
+            </FooterTab>
+          </Footer>
+        </ScrollView>
       </Container>
     );
   }

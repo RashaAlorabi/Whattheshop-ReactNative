@@ -19,8 +19,7 @@ const ProductStack = createStackNavigator(
     },
     defaultNavigationOptions: {
       headerStyle: {
-
-        backgroundColor: "black",
+        backgroundColor: "white",
 
         height: 75
       },

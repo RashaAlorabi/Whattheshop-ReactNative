@@ -18,10 +18,7 @@ const AuthStack = createStackNavigator(
     // HomePage: HomePage,
     ProductsList: ProductsList,
     UpdateProfile: UpdateProfile,
-    ProductDetail: ProductDetail,
-    CartList: CartList,
-    Checkout: Checkout,
-    Thanks: Thanks
+    ProductDetail: ProductDetail
   },
   {
     initialRouteName: "Auth",
@@ -30,7 +27,8 @@ const AuthStack = createStackNavigator(
     },
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "white"
+        backgroundColor: "white",
+        height: 75
       },
       headerTitleStyle: {
         fontWeight: "bold"

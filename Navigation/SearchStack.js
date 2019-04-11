@@ -15,7 +15,8 @@ const SearchStack = createStackNavigator(
     },
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "#009973"
+        backgroundColor: "white",
+        height: 75
       },
       headerTitleStyle: {
         fontWeight: "bold"

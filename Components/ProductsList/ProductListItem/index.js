@@ -44,16 +44,31 @@ class ProductListItem extends Component {
       return (
         <View style={{ flex: 1, flexDirection: "row" }}>
           <ScrollView scrollEventThrottle={16}>
-            <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20 }}>
-              <Text
+            <View style={{ flex: 1, backgroundColor: "white" }}>
+              <View
                 style={{
-                  fontSize: 24,
-                  fontWeight: "700",
-                  paddingHorizontal: 20
+                  backgroundColor: "#009973",
+                  borderBottomRightRadius: 50,
+                  width: 160
                 }}
               >
-                {category.name}
-              </Text>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: "400",
+                    color: "white",
+                    paddingLeft: 15,
+                    fontFamily: "Gill Sans"
+                  }}
+                >
+                  <Icon
+                    name="shop"
+                    type="Entypo"
+                    style={{ fontSize: 25, color: "white" }}
+                  />
+                  {category.name}
+                </Text>
+              </View>
 
               <View style={{ height: 450, marginTop: 20 }}>
                 <ScrollView horizontal={true}>{productsList}</ScrollView>
