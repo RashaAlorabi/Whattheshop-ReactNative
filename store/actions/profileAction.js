@@ -4,7 +4,7 @@ import * as actionTypes from "./actionTypes";
 // import { resetErrors } from "./errors";
 
 const instance = axios.create({
-  baseURL: "http://172.20.10.3:80/api/"
+  baseURL: "http://172.20.1.103:80/api/"
 });
 
 export const profile = () => {
