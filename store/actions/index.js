@@ -13,7 +13,7 @@ export {
 } from "./productsAction";
 
 export { profile, profileUpdate } from "./profileAction";
-export { checkout } from "./ordersAction";
+export { checkout, final_checkout } from "./ordersAction";
 export {
   fetchCartList,
   addItemToCart,

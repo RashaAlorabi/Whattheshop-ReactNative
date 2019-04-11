@@ -21,7 +21,7 @@ class CheckoutCartItem extends Component {
         <Body>
           <Text>{item.product.name}</Text>
           <Text note numberOfLines={1}>
-            Added By {item.product.added_by}
+            Added By {item.product.added_by.username}
           </Text>
           <Text note numberOfLines={1}>
             subtotal: {item.subtotal} SR
